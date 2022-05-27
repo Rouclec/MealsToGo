@@ -4,16 +4,16 @@ import styled from "styled-components/native";
 import { LocationContext } from "../../../services/location/location.context";
 
 const SearchContainer = styled.View`
-  margintop: 10px;
-  padding: 0 ${(props) => props.theme.space[3]};
+  padding: ${(props) => props.theme.space[1]};
+  position: absolute;
+  z-index: 999;
+  top: 20px;
+  width: 100%;
 `;
 
-export const Search = ({onFavoritesToggled, isFavoritesToggled}) => {
+export const Search = () => {
   const { keyword, search } = React.useContext(LocationContext);
-
-
   const [searchKeyword, setSearchKeyword] = React.useState(keyword);
-
 
   React.useEffect(() => {
     setSearchKeyword(keyword);
@@ -22,8 +22,7 @@ export const Search = ({onFavoritesToggled, isFavoritesToggled}) => {
   return (
     <SearchContainer>
       <Searchbar
-        icon= {isFavoritesToggled ? 'heart' : 'heart-outline'}
-        onIconPress={onFavoritesToggled}
+        icon="globe-model"
         placeholder="Search for a location"
         value={searchKeyword}
         onSubmitEditing={() => {
